@@ -1,6 +1,7 @@
 import DataLoader = require('dataloader');
 import { Service } from 'typedi';
 import { Author } from './Author';
+import { NewAuthorInput } from './graphql/NewAuthorInput';
 
 const authors: Author[] = [
     { id: '1', firstName: 'One', lastName: 'Person' },
@@ -27,5 +28,15 @@ export class AuthorService {
     public async getAllAuthors(from: number, to?: number): Promise<Author[]> {
         console.log('Load all authors from DB');
         return authors.slice(from, to);
+    }
+
+    public async createAuthor({firstName, lastName}): Promise<Author> {
+        const author = {
+            firstName: firstName,
+            lastName: lastName,
+            id: Math.ceil(Math.random()*10000).toString()
+      };
+      authors.push(author);
+      return author;
     }
 }

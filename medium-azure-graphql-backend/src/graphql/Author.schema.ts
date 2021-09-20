@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from 'type-graphql';
+import { Author } from '../Author';
 
 @ObjectType()
 export class AuthorSchema {
@@ -13,4 +14,10 @@ export class AuthorSchema {
 
     @Field()
     lastName: string;
+
+    constructor(author: Author) {
+        this.id = author.id;
+        this.firstName = author.firstName;
+        this.lastName = author.lastName;
+    }
 }
