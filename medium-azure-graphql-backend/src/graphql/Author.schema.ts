@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-import { Author } from '../Author';
+import { Author } from '../domain/author/Author';
 
 @ObjectType()
 export class AuthorSchema {

@@ -1,16 +1,16 @@
 import { FieldResolver, Resolver, Root } from 'type-graphql';
 import { Service } from 'typedi';
-import { AuthorService } from '../AuthorService';
+import { AuthorRepository } from '../persistence/AuthorRepository';
 import { AuthorSchema } from './Author.schema';
 import { BookSchema } from './Book.schema';
 
 @Service()
 @Resolver((of) => BookSchema)
 export default class BookAuthorResolver {
-    constructor(private readonly authorService: AuthorService) {}
+    constructor(private readonly authorRepository: AuthorRepository) {}
 
     @FieldResolver((type) => AuthorSchema)
     async author(@Root() book: BookSchema): Promise<AuthorSchema> {
-        return this.authorService.getAuthorById(book.authorId);
+        return this.authorRepository.getAuthorById(book.authorId);
     }
 }

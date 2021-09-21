@@ -1,13 +1,13 @@
-import { Length, MaxLength } from "class-validator";
-import { Field, InputType } from "type-graphql";
+import { Length, MaxLength } from 'class-validator';
+import { ArgsType, Field } from 'type-graphql';
 
-@InputType()
+@ArgsType()
 export class NewAuthorInput {
-  @Field()
-  @MaxLength(30)
-  firstName: string;
+    @Field()
+    @MaxLength(30)
+    firstName: string;
 
-  @Field()
-  @MaxLength(30)
-  lastName: string;
+    @Field()
+    @MaxLength(30)
+    lastName: string;
 }
